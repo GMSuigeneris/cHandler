@@ -1,0 +1,21 @@
+body{
+    background-image:url('/image/use.jpg');
+    background-repeat:no-repeat;
+    background-size:cover;
+}
+
+@media(max-width:700px){
+body{
+    background-image:url('/image/try.jpg');
+    background-repeat:no-repeat;
+    background-size:cover;
+}
+#action{
+    padding:5px; 
+    background-color:#b22222; 
+    color:white;
+}
+
+#commentToggle{
+    width:200px;
+}
