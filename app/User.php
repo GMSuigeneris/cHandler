@@ -22,6 +22,7 @@ class User extends Authenticatable{
         'last_name',
         'city',
         'role_id',
+        'avatar'
     ];
 
     /**

@@ -10,9 +10,13 @@
                 </div>
                 <div class="card-body">
                     <ul class="list-group">
+                    @if(count($companies)>0)
                         @foreach($companies as $company)
                             <li class="list-group-item text-light"><a href="/companies/{{$company->id}}"><b>{{ $company->name }}</b> </a></li>
                         @endforeach
+                    @else
+                        <p>No company has been created</p>
+                    @endif
                     </ul>
                 </div>
             </div>

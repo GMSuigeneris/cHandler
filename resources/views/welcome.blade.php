@@ -76,9 +76,9 @@
     <body>
         <div class="flex-center position-ref full-height">
         <div class="top-left links" style="background-color:#000; padding:5px;">
-            <a href="https://laravel.com/docs" >ABOUT</a>
-            <a href="https://laracasts.com">OUR VALUES</a>
-            <a href="https://laravel-news.com">OUR PEOPLE</a>
+            <a href="/about" >ABOUT</a>
+            <a href="/values">OUR VALUES</a>
+            <a href="/team">OUR PEOPLE</a>
             <a href="#" type="button" data-toggle="modal" data-target="#myModal">CONTACT US</a>
         </div>
             @if (Route::has('login'))

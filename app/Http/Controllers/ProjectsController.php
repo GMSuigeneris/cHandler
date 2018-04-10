@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Project;
 use App\Company;
 use App\ProjectUser;
-use App\User; //user model imported
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -33,25 +33,15 @@ class ProjectsController extends Controller{
         if(Auth::user()->id == $project->user_id){
         $user = User:: where('email',$request->input('email'))->first();
             if($user  && $project){
-               $projectuser= ProjectUser:: where('user_id',$user->id)
-                                            ->where('project_id',$project->id)
-                                             ->first();
-                //write a code to check if user has been signed up
-           
-                
-                    if($projectuser){
-                        return redirect()->route('projects.show',['project'=>$project->id])
-                        ->with('success',$request->input('email').' has already been added to this project');
-                    }
-                
-               
+                //write a code to check if user has been signed up         
+                   
                 $project->users()->attach($user->id);
                 return redirect()->route('projects.show',['project'=>$project->id])
                 ->with('success',$request->input('email').' has been added to the project successfully');
             }    
         }
         return redirect()->route('projects.show',['project'=>$project->id])
-        ->with('success','User does not exist');
+        ->with('error','User does not exist');
     }
     /**
      * Show the form for creating a new resource.
@@ -96,10 +86,8 @@ class ProjectsController extends Controller{
      * @param  \App\project  $project
      * @return \Illuminate\Http\Response
      */
-    public function show(Project $project){
-        //$project= Project::where('id',$project->id)->first();
-        $project= Project::find($project->id);
-        dump($project->comments);
+    public function show($id){
+        $project= Project::find($id);
         $comments = $project->comments;
         return view('projects.show',['project'=>$project,'comments'=>$comments]);
     }

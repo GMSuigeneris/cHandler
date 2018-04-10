@@ -51,9 +51,10 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'username' => 'required|string|max:255',
             'lastname' => 'required|string|max:255',
-            'middlename' => 'required|string|max:255',
+            'middlename' => 'string|max:255',
             'firstname' => 'required|string|max:255',
             'city' => 'required|string|max:255',
+            'avatar' => 'image|string|max:1999',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
         ]);
@@ -67,6 +68,20 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        if($data['image']){
+            $fileNameWithExt = $data['image']->getClientOriginalName();
+            //File name without ext
+            $filename = pathinfo($fileNameWithExt,PATHINFO_FILENAME);
+            //Extension
+            $extension = $data['image']->getClientOriginalExtension();
+            //Filename to store
+            $fileNameToStore= $filename.'_'.time().'.'.$extension;
+            $path = $data['image']->storeAs('public/cover_images',$fileNameToStore);
+            //$path = $data['image']->move('uploads',$fileNameToStore);
+        }else{
+            $fileNameToStore ="noimage.jpg";
+        }
+
         return User::create([
             'username' => $data['username'],
             'first_name' => $data['firstname'],
@@ -75,6 +90,7 @@ class RegisterController extends Controller
             'city' => $data['city'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'avatar'=>$fileNameToStore
         ]);
     }
 }

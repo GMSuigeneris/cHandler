@@ -10,6 +10,7 @@ body{
     background-repeat:no-repeat;
     background-size:cover;
 }
+}
 #action{
     padding:5px; 
     background-color:#b22222; 
@@ -18,4 +19,18 @@ body{
 
 #commentToggle{
     width:200px;
+}
+
+.profile{
+    padding:3px; 
+    font-family:bold;
+    border:2px solid black;
+    text-transform: uppercase;
+    text-decoration: none;
+}
+
+#image{
+    width:100px;
+    height:100px;
+    border-radius: 50%;
 }

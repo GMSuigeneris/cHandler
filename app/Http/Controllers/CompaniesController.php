@@ -7,6 +7,11 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class CompaniesController extends Controller{
+    public function __construct()
+    {
+        $this->middleware('auth');
+       // $this->middleware('auth',['except'=>['index','home','about']]);//change to admin
+    }
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +19,6 @@ class CompaniesController extends Controller{
      */
 
     public function index(){
-        //dump(Auth::user()->id);
         if(Auth::check()){
             if(Auth::user()->role_id == 1){
                 $companies= Company ::all();

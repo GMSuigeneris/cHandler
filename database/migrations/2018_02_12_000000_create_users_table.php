@@ -13,10 +13,10 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
-        if(!Schema::hasTable('users')){
+       
             Schema::create('users', function (Blueprint $table) {
                 $table->increments('id');
-                $table->string('name');
+                $table->string('username');
                 $table->string('email')->unique();
                 $table->string('password');
                 $table->integer('role_id')->unsigned()->default(3);
@@ -24,16 +24,13 @@ class CreateUsersTable extends Migration
                 $table->string('middle_name')->nullable();
                 $table->string('last_name')->nullable();
                 $table->string('city')->nullable();
+                $table->string('avatar')->nullable();
                 
                 $table->rememberToken();
                 $table->timestamps();
             });
-        }
+    
 
-
-        Schema::table('users', function (Blueprint $table) {
-          
-        });
     }
 
     /**

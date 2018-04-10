@@ -2,24 +2,29 @@
 
 @section('content')
 <div class="container">
-    <div class="row">
-        <div class="col-sm-6 mx-auto">
-            <div class="card" style="background-color:#000; color:#fff;">
-                <div class="card card-header">
-                    {{Auth::user()->username}}<br>
-
-                </div>
-                <div class="card card-body" style="color:#b22222">
-                   <div class="mx-auto"> <img src="{{Auth::user()->image}}" alt="User image" id="image"></div>
-                        <ul style="list-style:none; margin-top:5px;">
-                        <li style="padding:3px; font-family:bold; border:2px solid black">Name: {{Auth::user()->firstname}} {{Auth::user()->middlename}} {{Auth::user()->lastname}} </li>
-                        <li style="padding:3px; font-family:bold; border:2px solid black">Email: {{Auth::user()->email}}</li>
-                        <li style="padding:3px; font-family:bold; border:2px solid black">Gender: {{Auth::user()->gender}} </li>
-                     </ul>
+    <div class="row justify-content-center">
+        <div class="col-md-7">
+            <div class="card">
+                <div class="card-header" style="background-color:#000; color:#fff;">DASHBOARD</div>
+                <div class="card-body">
+                   <div class="row">
+                    <div class="col-sm-2">
+                         <img src="/storage/cover_images/{{Auth::user()->avatar}}" alt="User image" id="image">
+                         <br><br>
+                         <a href="/users/{{Auth::user()->id}}/edit"><button class="btn btn-danger btn-sm">Edit Profile</button></a>
+                    </div>
+                     <div class="col-sm-9">
+                        <ul style="list-style:none;">
+                            <li class="profile">Name: {{Auth::user()->first_name}} {{Auth::user()->middle_name}} {{Auth::user()->last_name}} </li>
+                            <li class="profile">Email: {{Auth::user()->email}}</li>
+                            <li class="profile">Username: {{Auth::user()->username}} </li>
+                             <li class="profile">City: {{Auth::user()->city}} </li>
+                        </ul>
+                     </div>
+                  </div>
                 </div>
             </div>
         </div>
-
     </div>
 </div>
 

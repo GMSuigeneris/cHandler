@@ -29,8 +29,8 @@
                         document.getElementById('delete-form').submit();
                     }">Delete</a>
                     <form action="{{ route('projects.destroy',[$project->id]) }}" method="POST" id="delete-form" style="display:none;">
-                        <input type="hidden" name="_method" value="delete">
-                        {{csrf_field()}}
+                        @method('delete')
+                       @csrf
                     </form>
                 </li>
                 @endif
@@ -53,7 +53,7 @@
                 <h4>Project Members</h4>
                 <ul class="list-unstyled">
                     @foreach($project->users as $user)
-                        <li><a href="/projects">{{$user->email}}</a></li>
+                        <li><a href="/users">{{$user->email}}</a></li>
                     @endforeach
                 </ul>
         </div>
